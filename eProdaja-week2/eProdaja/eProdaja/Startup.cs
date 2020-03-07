@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using eProdaja.Controllers.Services;
 using eProdaja.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +40,9 @@ namespace eProdaja
             var connection = "Data Source=.;Initial Catalog=eProdaja; Integrated Security=true";
             services.AddDbContext<eProdajaContext>(options => options.UseSqlServer(connection));
 
+            services.AddScoped<IKorisniciService, KorisniciService>();
+
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
